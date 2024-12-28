@@ -1,0 +1,21 @@
+# 開発用のベースイメージ
+FROM golang:1.23.2
+
+# Air のインストール
+RUN go install github.com/cosmtrek/air@v1.40.4
+
+# 作業ディレクトリ
+WORKDIR /backend
+
+# モジュールファイルをコピーして依存関係をインストール
+COPY ./backend/go.mod ./backend/go.sum ./
+RUN go mod tidy
+
+# # ソースコードをコピー
+COPY ./backend .
+
+# # Air の設定ファイルをコピー
+COPY ./backend/.air.toml /backend
+
+# Air を使用してアプリケーションを実行
+CMD ["air"]
