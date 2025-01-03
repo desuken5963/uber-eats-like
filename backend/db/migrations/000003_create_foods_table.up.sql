@@ -1,0 +1,10 @@
+CREATE TABLE foods (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    restaurant_id BIGINT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    price INT NOT NULL,
+    description TEXT NOT NULL,
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT fk_restaurant_foods FOREIGN KEY (restaurant_id) REFERENCES restaurants (id)
+);

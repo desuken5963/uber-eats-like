@@ -14,8 +14,10 @@ services:
       - DB_NAME=${DB_NAME}
     volumes:
       - ./backend:/backend
+      - ./backend/db/migrations:/backend/migrations
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: mysql:8.0
@@ -29,6 +31,12 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
     volumes:
       - mysql-data:/var/lib/mysql
+    healthcheck:  # MySQLのヘルスチェック設定
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 
 volumes:
   mysql-data:
