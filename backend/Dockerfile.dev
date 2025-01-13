@@ -1,0 +1,29 @@
+# 開発用のベースイメージ
+FROM golang:1.23.2
+
+# Air のインストール
+RUN go install github.com/cosmtrek/air@v1.40.4
+
+# golang-migrate のインストール
+RUN curl -L https://github.com/golang-migrate/migrate/releases/download/v4.16.0/migrate.linux-amd64.tar.gz | \
+    tar xvz && mv migrate /usr/local/bin/
+
+# 作業ディレクトリ
+WORKDIR /backend
+
+# モジュールファイルをコピーして依存関係をインストール
+COPY ./backend/go.mod ./backend/go.sum ./
+RUN go mod tidy
+
+# ソースコードとマイグレーションファイルをコピー
+COPY ./backend .
+
+# Air の設定ファイルをコピー
+COPY ./backend/.air.toml /backend
+
+# エントリポイントスクリプトを追加
+COPY ./backend/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+# エントリポイントを設定
+CMD ["/entrypoint.sh"]
