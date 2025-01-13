@@ -20,12 +20,12 @@ $ migrate create -ext sql -dir db/migrations -seq create_hoge_table
 マイグレーションの適用
 
 ```
-$ migrate -path db/migrations -database "mysql://myuser:mypassword@tcp(db:3306)/mydb" up
+$ migrate -path db/migrations -database "mysql://${DB_USER}:${DB_PASSWORD}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}" up
 ```
 
 マイグレーションのロールバック
 
 ```
-$ migrate -path db/migrations -database "mysql://myuser:mypassword@tcp(db:3306)/mydb" down
+$ migrate -path db/migrations -database "mysql://${DB_USER}:${DB_PASSWORD}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}" down
 ```
 
