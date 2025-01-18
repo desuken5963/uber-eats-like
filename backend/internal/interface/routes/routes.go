@@ -31,6 +31,10 @@ func RegisterRoutes(router *gin.Engine) {
 	createLineFoodUsecase := usecase.NewCreateLineFoodUsecase(createLineFoodRepo)
 	createLineFoodHandler := handler.NewCreateLineFoodHandler(createLineFoodUsecase)
 
+	replaceLineFoodRepo := repository.NewReplaceLineFoodRepository(db)
+	replaceLineFoodUsecase := usecase.NewReplaceLineFoodUsecase(replaceLineFoodRepo)
+	replaceLineFoodHandler := handler.NewReplaceLineFoodHandler(replaceLineFoodUsecase)
+
 	// ルート設定
 	api := router.Group("/api/v1")
 	{
@@ -38,5 +42,6 @@ func RegisterRoutes(router *gin.Engine) {
 		api.GET("/restaurants/:restaurant_id/foods", foodHandler.GetFoods)
 		api.GET("/line_foods", getLineFoodsHandler.Handle)
 		api.POST("/line_foods/:food_id", createLineFoodHandler.Handle)
+		api.PUT("/line_foods/:food_id", replaceLineFoodHandler.Handle)
 	}
 }
