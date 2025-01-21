@@ -9,7 +9,6 @@ type Food struct {
 	Price        int        `json:"price"`
 	RestaurantID int        `json:"restaurant_id"`
 	Restaurant   Restaurant `gorm:"foreignKey:RestaurantID"`
-	OrderID      *int       `json:"order_id"`
 	LineFood     *LineFood  `gorm:"foreignKey:FoodID"`
 	CreatedAt    time.Time  `json:"created_at"`
 	UpdatedAt    time.Time  `json:"updated_at"`
