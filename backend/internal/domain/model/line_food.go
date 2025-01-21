@@ -5,6 +5,7 @@ import "time"
 type LineFood struct {
 	ID           int        `json:"id"`
 	FoodID       int        `json:"food_id"`
+	Food         Food       `gorm:"foreignKey:FoodID"`
 	RestaurantID int        `json:"restaurant_id"`
 	Restaurant   Restaurant `gorm:"foreignKey:RestaurantID"`
 	OrderID      *int       `json:"order_id"`
