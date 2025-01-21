@@ -8,17 +8,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// ReplaceLineFoodHandler handles the PUT /line_foods/:food_id request.
 type ReplaceLineFoodHandler struct {
 	Usecase usecase.ReplaceLineFoodUsecase
 }
 
-// NewReplaceLineFoodHandler creates a new instance of ReplaceLineFoodHandler.
 func NewReplaceLineFoodHandler(usecase usecase.ReplaceLineFoodUsecase) *ReplaceLineFoodHandler {
 	return &ReplaceLineFoodHandler{Usecase: usecase}
 }
 
-// Handle processes the request to replace line foods.
 func (h *ReplaceLineFoodHandler) Handle(c *gin.Context) {
 	foodID, err := strconv.Atoi(c.Param("food_id"))
 	if err != nil {
