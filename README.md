@@ -29,3 +29,16 @@ $ migrate -path db/migrations -database "mysql://${DB_USER}:${DB_PASSWORD}@tcp($
 $ migrate -path db/migrations -database "mysql://${DB_USER}:${DB_PASSWORD}@tcp(${DB_HOST}:${DB_PORT})/${DB_NAME}" down
 ```
 
+## Next.js
+
+依存関係のインストール
+
+```
+$ npm install
+```
+
+サーバーの起動
+
+```
+$ npm run dev
+```
