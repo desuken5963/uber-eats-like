@@ -28,6 +28,7 @@ tmp/
 # OS の一時ファイル
 .DS_Store
 Thumbs.db
+.AppleDouble
 
 # アプリケーション環境設定
 .env
@@ -39,6 +40,23 @@ Thumbs.db
 *.log
 *.pid
 *.seed
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js 関連
+.next/
+out/
+
+# TypeScript
+.tsbuildinfo
+
+# ESLint
+.eslintcache
+
+# Yarn Plug'n'Play
+.pnp.cjs
+.pnp.data.json
 
 # その他
 node_modules/
